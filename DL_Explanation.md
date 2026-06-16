@@ -1,9 +1,11 @@
 # DEEP LEARNING & DIGITAL IMAGE PROCESSING
+
 ## Comprehensive Examination Notes - All 5 Units
 
 ---
 
 # IMPORTANT NOTICE
+
 **These notes are prepared based ONLY on the provided markdown files (doc1.md, doc2.md, doc3.md, doc4.md).**
 
 **Coverage Assessment:**
@@ -26,31 +28,37 @@
 ### Key Components:
 
 **1. Image Acquisition**
+
 - Camera or scanner captures visual scene
 - Converts continuous light into digital signals
 - First step in any image processing pipeline
 
 **2. Image Storage**
+
 - Temporary memory (RAM) for processing
 - Permanent storage (disk) for retention
 - Compression techniques to reduce storage needs
 
 **3. Image Processing Computer**
+
 - Specialized hardware for fast computation
 - CPU/GPU for executing algorithms
 - Digital Signal Processors (DSPs) for real-time processing
 
 **4. Image Display**
+
 - Monitors and printers for output
 - Color calibration for accurate reproduction
 - High-resolution displays for detailed inspection
 
 **5. Communication Interface**
+
 - Network connections for transmission
 - Compression for bandwidth efficiency
 - Protocols for data exchange
 
 ### **EXAM POINTS:**
+
 - The image processing system forms a chain from acquisition to display
 - Each component must work together for effective processing
 - Storage and processing capabilities determine system efficiency
@@ -60,38 +68,46 @@
 ## 1.2 Sampling and Quantization
 
 ### Sampling
+
 **Definition:** Converting continuous spatial coordinates into discrete pixel locations.
 
 **Key Concepts:**
+
 - **Sampling Grid:** The process of dividing the continuous image plane into a grid of picture elements (pixels)
 - Each intersection point in the grid represents a specific location in the image
 - The number of sample points determines the image resolution
 
 **Example:**
+
 ```
 Continuous Image → Sample Points → Discrete Grid
                  (at regular intervals)
 ```
 
 **Important Formulas:**
+
 - If an image has M rows and N columns, we have M × N sample points
 - Sampling interval (Δx, Δy) determines the spacing between samples
 
 ### Quantization
+
 **Definition:** Converting continuous amplitude values into discrete intensity levels.
 
 **Key Concepts:**
+
 - Each sampled pixel has a continuous brightness value
 - Quantization maps these continuous values to discrete levels (0-255 for 8-bit)
 - Number of quantization levels = 2^n where n = bit depth
 
 **Example:**
+
 ```
 8-bit quantization → 256 levels (0 to 255)
 16-bit quantization → 65,536 levels
 ```
 
 ### **IMPORTANT NUMERICAL CONCEPT:**
+
 ```
 Total gray levels = 2^b
 
@@ -102,6 +118,7 @@ Total gray levels = 2^8 = 256 levels (0, 1, 2, ..., 255)
 ```
 
 ### **EXAM POINTS:**
+
 - **Sampling** deals with SPATIAL coordinates (where to measure)
 - **Quantization** deals with INTENSITY values (what value to assign)
 - Together, they convert a continuous image into a digital image
@@ -113,27 +130,33 @@ Total gray levels = 2^8 = 256 levels (0, 1, 2, ..., 255)
 ## 1.3 Spatial and Intensity Resolution
 
 ### Spatial Resolution
+
 **Definition:** The smallest detectable detail in an image, measured in lines per unit distance or pixels per inch (PPI).
 
 **Key Points:**
+
 - Related to the sampling process
 - More pixels = Higher spatial resolution
 - Dependent on the sampling grid density
 
 **Measurement:**
+
 - Lines per millimeter (lp/mm)
 - Pixels per inch (PPI)
 - Dots per inch (DPI) for printers
 
 ### Intensity Resolution
+
 **Definition:** The smallest detectable change in intensity level.
 
 **Key Points:**
+
 - Related to the quantization process
 - More gray levels = Higher intensity resolution
 - Determined by the number of bits used
 
 **IMPORTANT FORMULA:**
+
 ```
 Intensity levels = 2^b
 
@@ -155,11 +178,12 @@ Image Size (bytes) = M × N × b / 8
 
 where:
 - M = number of rows
-- N = number of columns  
+- N = number of columns
 - b = bits per pixel
 ```
 
 ### **EXAM POINTS:**
+
 - **Spatial resolution** = How fine the details are in the image (pixel count)
 - **Intensity resolution** = How smooth the gray transitions are (bit depth)
 - There's a trade-off between the two - increasing one may require decreasing the other due to storage constraints
@@ -172,6 +196,7 @@ where:
 ### Pixel Neighborhoods
 
 **4-Neighborhood (N4):**
+
 - Adjacent pixels sharing a common edge
 - For pixel (x, y): pixels at (x±1, y) and (x, y±1)
 - Forms a cross pattern around the pixel
@@ -183,6 +208,7 @@ where:
 ```
 
 **8-Neighborhood (N8):**
+
 - All pixels sharing a common edge or corner
 - Includes N4 plus the 4 diagonal neighbors
 - For pixel (x, y): all pixels at (x±1, y±1) and (x±1, y±1)
@@ -196,18 +222,22 @@ SW S SE
 ### Connectivity
 
 **4-Connectivity:**
+
 - Two pixels are 4-connected if they are neighbors (N4) AND have similar intensity values
 - Used for binary images and operations like erosion/dilation
 
 **8-Connectivity:**
+
 - Two pixels are 8-connected if they are neighbors (N8) AND have similar intensity values
 - More lenient connectivity, may create diagonal connections
 
 ### Adjacency
+
 - **4-adjacent:** Pixels are 4-adjacent if they are 4-neighbors and their intensity values satisfy some criterion (e.g., both are gray level 1)
 - **8-adjacent:** Pixels are 8-adjacent if they are 8-neighbors and satisfy the criterion
 
 ### Path
+
 - A sequence of pixels where each consecutive pair is connected/adjacent
 - **4-path:** Path using only 4-connectivity
 - **8-path:** Path using only 8-connectivity
@@ -215,20 +245,23 @@ SW S SE
 ### **IMPORTANT CONCEPTS:**
 
 **Connected Components:**
+
 - A set of pixels where every pixel is connected to every other pixel in the set
 - Used in object detection and counting
 
 **Region:**
+
 - A connected component in an image
 - Boundaries separate different regions
 
 ### **EXAM POINTS:**
-| Concept | Definition |
-|---------|------------|
-| 4-Neighborhood | Edge-sharing neighbors (up, down, left, right) |
-| 8-Neighborhood | All adjacent neighbors (including diagonals) |
-| 4-Connectivity | 4-neighbor + same intensity criterion |
-| 8-Connectivity | 8-neighbor + same intensity criterion |
+
+| Concept             | Definition                                     |
+| ------------------- | ---------------------------------------------- |
+| 4-Neighborhood      | Edge-sharing neighbors (up, down, left, right) |
+| 8-Neighborhood      | All adjacent neighbors (including diagonals)   |
+| 4-Connectivity      | 4-neighbor + same intensity criterion          |
+| 8-Connectivity      | 8-neighbor + same intensity criterion          |
 | Connected Component | Set of connected pixels with shared properties |
 
 ---
@@ -238,36 +271,43 @@ SW S SE
 ### Major Application Areas:
 
 **1. Medical Imaging**
+
 - X-rays, CT scans, MRI
 - Disease diagnosis and treatment planning
 - Image enhancement for better visualization
 
 **2. Remote Sensing**
+
 - Satellite imagery analysis
 - Weather forecasting
 - Agricultural monitoring
 
 **3. Document Processing**
+
 - Optical Character Recognition (OCR)
 - Document scanning and archiving
 - Signature verification
 
 **4. Industrial Inspection**
+
 - Quality control on assembly lines
 - Defect detection
 - Automated manufacturing
 
 **5. Biometrics**
+
 - Face recognition systems
 - Fingerprint identification
 - Iris recognition
 
 **6. Video Processing**
+
 - Motion detection
 - Video compression
 - Object tracking
 
 ### **EXAM POINTS:**
+
 - Image processing applications span medicine, industry, security, and consumer electronics
 - Key domains: Medical imaging, remote sensing, computer vision, video analysis
 - Growing importance with AI and machine learning integration
@@ -283,10 +323,12 @@ SW S SE
 ### Common Transformation Types:
 
 **1. Image Negatives**
+
 ```markdown
 s = L - 1 - r
 
 where:
+
 - s = output intensity
 - L = maximum gray level (e.g., 256 for 8-bit)
 - r = input intensity
@@ -295,6 +337,7 @@ where:
 **Use:** Enhancing white or gray details embedded in dark regions
 
 **2. Log Transformation**
+
 ```markdown
 s = c × log(1 + r)
 
@@ -305,23 +348,28 @@ where c = constant
 **Application:** Displaying Fourier spectrum
 
 **3. Power Law (Gamma) Transformation**
+
 ```markdown
 s = c × r^γ
 
 where:
+
 - c = constant
 - γ (gamma) = exponent determining transformation shape
 ```
 
 **Use:** Gamma correction in displays and cameras
+
 - γ < 1: Brightens dark areas
 - γ > 1: Darkens bright areas
 
 **4. Contrast Stretching**
+
 - Expands the range of intensity values
 - Enhances contrast by spreading the original range to full display range
 
 **5. Thresholding**
+
 ```markdown
 s = 0 if r < T
 s = L-1 if r ≥ T
@@ -332,12 +380,13 @@ where T = threshold value
 **Use:** Creating binary images from grayscale
 
 ### **EXAM POINTS:**
-| Transformation | Formula | Use Case |
-|---------------|---------|----------|
-| Negative | s = L-1-r | Enhance dark regions |
-| Log | s = c×log(1+r) | Display spectra |
-| Power Law | s = c×r^γ | Gamma correction |
-| Threshold | Binary output | Segmentation |
+
+| Transformation | Formula        | Use Case             |
+| -------------- | -------------- | -------------------- |
+| Negative       | s = L-1-r      | Enhance dark regions |
+| Log            | s = c×log(1+r) | Display spectra      |
+| Power Law      | s = c×r^γ      | Gamma correction     |
+| Threshold      | Binary output  | Segmentation         |
 
 ---
 
@@ -348,24 +397,29 @@ where T = threshold value
 ## 2.1 Affine Transformations
 
 ### Definition
+
 An affine transformation preserves points, straight lines, and planes. It combines linear transformations (rotation, scaling, shear) with translation.
 
 ### Basic Affine Transformations:
 
 **1. Scaling (Resizing)**
+
 ```
 [x']   [sx  0 ]   [x]
 [y'] = [0   sy] × [y]
 ```
+
 - sx, sy = scaling factors in x and y directions
 
 **2. Rotation**
+
 ```
 [x']   [cosθ  -sinθ]   [x]
 [y'] = [sinθ   cosθ] × [y]
 ```
 
 **3. Translation**
+
 ```
 [x']   [1  0  tx]   [x]
 [y'] = [0  1  ty] × [y]
@@ -373,6 +427,7 @@ An affine transformation preserves points, straight lines, and planes. It combin
 ```
 
 **4. Shearing**
+
 ```
 Horizontal shear:    Vertical shear:
 [x']   [1  shx]   [x]    [x']   [1  0]   [x]
@@ -380,6 +435,7 @@ Horizontal shear:    Vertical shear:
 ```
 
 ### **EXAM POINTS:**
+
 - Affine transformations preserve parallel lines
 - Combinations of basic operations (scale, rotate, shear, translate)
 - Used for image registration and geometric corrections
@@ -396,10 +452,12 @@ Horizontal shear:    Vertical shear:
 ### Components of Spatial Filtering:
 
 **1. Filter Kernel/Mask:**
+
 - A small matrix (e.g., 3×3, 5×5) containing coefficients
 - Often called "window" or "mask"
 
 **2. Correlation Operation:**
+
 - Kernel is slid over the image
 - At each position, compute sum of products
 - Output placed at corresponding location
@@ -407,6 +465,7 @@ Horizontal shear:    Vertical shear:
 **3. Convolution Operation:** (Similar to correlation but kernel is rotated 180°)
 
 ### **FILTERING EQUATION:**
+
 ```
 g(x,y) = Σ Σ f(x+i, y+j) × h(i,j)
 
@@ -418,6 +477,7 @@ where:
 ```
 
 ### **EXAM POINTS:**
+
 - Spatial filtering works on pixel neighborhoods
 - Filter kernel size determines effect scope
 - Larger kernels = more smoothing but more computation
@@ -430,7 +490,9 @@ where:
 ### Purpose: Reduce noise and blur edges
 
 ### 1. Mean Filter (Average Filter)
+
 **Kernel (3×3):**
+
 ```
 [1 1 1]
 [1 1 1] × (1/9)
@@ -438,12 +500,15 @@ where:
 ```
 
 **Effect:**
+
 - Replaces each pixel with average of neighbors
 - Reduces random noise
 - Blurs edges
 
 ### 2. Weighted Mean Filter
+
 **Kernel (3×3):**
+
 ```
 [1 2 1]
 [2 4 2] × (1/16)
@@ -451,32 +516,38 @@ where:
 ```
 
 **Effect:**
+
 - Center pixel weighted more heavily
 - Less blurring than pure average
 - Gaussian-like smoothing
 
 ### 3. Median Filter
+
 **Process:**
+
 - Sort pixel values in neighborhood
 - Select median value
 - Replace center pixel with median
 
 **Effect:**
+
 - Excellent for salt-and-pepper noise
 - Preserves edges better than mean filter
 - Non-linear operation
 
 ### 4. Max and Min Filters
+
 - **Max Filter:** Replace with maximum value (removes "pepper" noise)
 - **Min Filter:** Replace with minimum value (removes "salt" noise)
 
 ### **EXAM POINTS:**
-| Filter Type | Best For | Key Characteristic |
-|------------|----------|-------------------|
-| Mean | General smoothing | Linear, blurs edges |
-| Weighted Mean | Less blur | Center-weighted |
-| Median | Salt & pepper noise | Edge-preserving |
-| Max/Min | Specific noise types | Extreme values |
+
+| Filter Type   | Best For             | Key Characteristic  |
+| ------------- | -------------------- | ------------------- |
+| Mean          | General smoothing    | Linear, blurs edges |
+| Weighted Mean | Less blur            | Center-weighted     |
+| Median        | Salt & pepper noise  | Edge-preserving     |
+| Max/Min       | Specific noise types | Extreme values      |
 
 ---
 
@@ -485,7 +556,9 @@ where:
 ### Purpose: Enhance edges and fine details
 
 ### 1. Laplacian Filter
+
 **Kernel (3×3, one variant):**
+
 ```
 [0  -1  0]
 [-1  4 -1]
@@ -493,13 +566,16 @@ where:
 ```
 
 **Process:**
+
 - Compute second derivative of intensity
 - Add result to original or subtract based on sign
 
 **Use:** Edge detection and enhancement
 
 ### 2. Gradient Filter (Sobel)
+
 **Horizontal (Sx):**
+
 ```
 [-1 -2 -1]
 [ 0  0  0]
@@ -507,6 +583,7 @@ where:
 ```
 
 **Vertical (Sy):**
+
 ```
 [-1  0  1]
 [-2  0  2]
@@ -514,6 +591,7 @@ where:
 ```
 
 **Gradient Magnitude:**
+
 ```
 g = √(Sx² + Sy²)
 ```
@@ -521,7 +599,9 @@ g = √(Sx² + Sy²)
 **Use:** Edge detection, directional changes
 
 ### 3. Unsharp Masking
+
 **Process:**
+
 1. Create blurred version of image
 2. Subtract from original
 3. Add result to original with scaling
@@ -533,6 +613,7 @@ where k = scaling factor (typically 1)
 ```
 
 ### **EXAM POINTS:**
+
 - Sharpening enhances high-frequency components
 - Laplacian highlights edges regardless of direction
 - Sobel detects edges with direction information
@@ -547,11 +628,13 @@ where k = scaling factor (typically 1)
 ### Common Combinations:
 
 **1. Smoothing followed by Sharpening**
+
 ```
 Original → Smoothing (remove noise) → Sharpening (enhance edges)
 ```
 
 **2. High-Boost Filtering**
+
 ```markdown
 g(x,y) = A × f(x,y) - smoothed version
 
@@ -559,6 +642,7 @@ where A > 1 (boost factor)
 ```
 
 **3. Gradient + Laplacian**
+
 ```
 - Gradient detects edges broadly
 - Laplacian localizes edges
@@ -575,6 +659,7 @@ Step 4: Evaluate and adjust parameters
 ```
 
 ### **EXAM POINTS:**
+
 - No single filter solves all problems
 - Order of operations matters
 - Test on small region before full application
@@ -591,16 +676,19 @@ Step 4: Evaluate and adjust parameters
 **Definition:** Learnable parameters that control the strength of connection between neurons.
 
 **Role:**
+
 - Determine how much influence input has on output
 - Each connection between neurons has an associated weight
 - Weights are adjusted during training to minimize error
 
 **Mathematical Representation:**
+
 ```
 output = Σ(input_i × weight_i)
 ```
 
 **Important Properties:**
+
 - Weights are initially random (often small values near 0)
 - During training, weights are updated via backpropagation
 - Final weight values encode learned features/patterns
@@ -610,25 +698,28 @@ output = Σ(input_i × weight_i)
 **Definition:** An additional learnable parameter added to the weighted sum.
 
 **Role:**
+
 - Shifts the activation function
 - Allows the network to fit the data better
 - Provides flexibility in fitting
 
 **Mathematical Representation:**
+
 ```
 z = Σ(input_i × weight_i) + bias
 ```
 
 ### **SIGNIFICANCE IN DEEP LEARNING:**
 
-| Aspect | Weights | Bias |
-|--------|---------|------|
-| Purpose | Control connection strength | Shift activation |
-| Effect | Scale inputs | Add constant offset |
-| Learning | Modified heavily during training | Modified during training |
-| Initialization | Often random (Xavier, He) | Often zero or small value |
+| Aspect         | Weights                          | Bias                      |
+| -------------- | -------------------------------- | ------------------------- |
+| Purpose        | Control connection strength      | Shift activation          |
+| Effect         | Scale inputs                     | Add constant offset       |
+| Learning       | Modified heavily during training | Modified during training  |
+| Initialization | Often random (Xavier, He)        | Often zero or small value |
 
 ### **EXAM POINTS:**
+
 - Weights and bias are the learnable parameters of neural networks
 - Without appropriate weights, networks cannot learn
 - Initialization of weights significantly affects training
@@ -655,12 +746,14 @@ Input 3 ──┤ Matrix    ├──→ Activation → Output
 ### Mathematical Operation:
 
 **Step 1: Weighted Sum (Linear Combination)**
+
 ```
 z = (x₁ × w₁) + (x₂ × w₂) + ... + (xₙ × wₙ) + b
 z = Σᵢ (xᵢ × wᵢ) + b
 ```
 
 **Step 2: Activation Function**
+
 ```
 a = f(z)
 
@@ -669,10 +762,11 @@ where f = activation function
 ```
 
 ### **EXAMPLE (Simple 2-input neuron):**
+
 ```
 Given:
 - x₁ = 0.5, x₂ = 0.3
-- w₁ = 0.8, w₂ = 0.2  
+- w₁ = 0.8, w₂ = 0.2
 - b = 0.1
 - f(sigmoid)
 
@@ -684,6 +778,7 @@ a = sigmoid(0.56) = 1/(1 + e^(-0.56)) = 0.637
 ```
 
 ### **EXAM POINTS:**
+
 - Neuron computes weighted sum of inputs
 - Bias is added before activation
 - Activation function introduces non-linearity
@@ -697,6 +792,7 @@ a = sigmoid(0.56) = 1/(1 + e^(-0.56)) = 0.637
 ### Layer Structure:
 
 **A layer consists of multiple neurons that:**
+
 - Receive the same input
 - Apply different weight combinations
 - Produce different outputs
@@ -730,6 +826,7 @@ Z₂ = w₂₁x₁ + w₂₂x₂ + w₂₃x₃ + b₂
 ```
 
 ### **ACTIVATION:**
+
 ```
 A = f(Z)
 
@@ -737,6 +834,7 @@ where f is applied element-wise
 ```
 
 ### **EXAM POINTS:**
+
 - Each layer transforms input via weights and activation
 - Layers create hierarchical feature representations
 - Deep networks stack multiple layers
@@ -749,6 +847,7 @@ where f is applied element-wise
 ### NumPy Fundamentals for Deep Learning:
 
 **1. Creating Arrays:**
+
 ```python
 import numpy as np
 
@@ -767,6 +866,7 @@ random = np.random.randn(3, 4)  # 3×4 matrix
 ```
 
 **2. Matrix Multiplication (Dot Product):**
+
 ```python
 # Element-wise (Hadamard product)
 A = W * X  # must be same shape
@@ -788,23 +888,24 @@ def dense_layer(X, W, b, activation='relu'):
     """
     # Linear transformation
     Z = np.dot(W, X) + b
-    
+
     # Activation
     if activation == 'relu':
         A = np.maximum(0, Z)
     elif activation == 'sigmoid':
         A = 1 / (1 + np.exp(-Z))
-    
+
     return A
 ```
 
 ### **NUMERICAL EXAMPLE:**
+
 ```python
 import numpy as np
 
 # Input: 3 features, 2 samples
 X = np.array([[0.5, 0.8],   # Feature 1
-              [0.3, 0.2],   # Feature 2  
+              [0.3, 0.2],   # Feature 2
               [0.1, 0.9]])  # Feature 3
 
 # Weights: 2 neurons, 3 inputs
@@ -821,6 +922,7 @@ Z = np.dot(W, X) + b
 ```
 
 ### **EXAM POINTS:**
+
 - NumPy enables efficient matrix operations for neural networks
 - Forward propagation = series of matrix multiplications + activations
 - Broadcasting handles different batch sizes automatically
@@ -831,9 +933,11 @@ Z = np.dot(W, X) + b
 ## 3.5 Dense Layer
 
 ### Definition:
+
 A dense (fully connected) layer where each neuron connects to all neurons in the previous layer.
 
 ### Structure:
+
 ```
 Input (n inputs) → [w₁₁ w₁₂ ... w₁ₙ] → Neuron 1
                  → [w₂₁ w₂₂ ... w₂ₙ] → Neuron 2
@@ -842,6 +946,7 @@ Input (n inputs) → [w₁₁ w₁₂ ... w₁ₙ] → Neuron 1
 ```
 
 ### Parameter Count:
+
 ```
 Total parameters = (n_inputs × n_neurons) + n_neurons
 
@@ -849,6 +954,7 @@ Total parameters = (n_inputs × n_neurons) + n_neurons
 ```
 
 ### **NUMERICAL EXAMPLE:**
+
 ```
 For a dense layer with:
 - 784 inputs (e.g., flattened 28×28 image)
@@ -857,6 +963,7 @@ For a dense layer with:
 ```
 
 ### **EXAM POINTS:**
+
 - Dense layers are the building blocks of neural networks
 - Each parameter must be learned during training
 - Dense layers can be followed by any activation
@@ -869,11 +976,13 @@ For a dense layer with:
 ### Why Activation Functions?
 
 **Without activation:** Output is purely linear combination of inputs
+
 ```
 y = WX + b  (linear)
 ```
 
 **With activation:** Output can be non-linear
+
 ```
 y = f(WX + b)  (non-linear)
 ```
@@ -885,42 +994,49 @@ This enables learning of complex, non-linear patterns.
 ### 3.6.1 Sigmoid Function
 
 **Formula:**
+
 ```
 σ(x) = 1 / (1 + e^(-x))
 ```
 
 **Properties:**
+
 - Output range: (0, 1)
 - S-shaped curve (Sigmoid)
 - Historically popular, now less used in hidden layers
 
 **Derivative:**
+
 ```
 σ'(x) = σ(x) × (1 - σ(x))
 ```
 
 **Use Cases:**
+
 - Binary classification output layer
 - When output needs probability [0, 1]
 
 **Problems:**
+
 - **Vanishing gradient:** Gradient approaches 0 for large |x|
 - Not zero-centered
 - Computationally expensive (e^(-x))
 
 ### **EXAM POINTS:**
-| Aspect | Value |
-|--------|-------|
-| Formula | 1/(1 + e^(-x)) |
-| Range | (0, 1) |
-| Derivative | σ(x)(1-σ(x)) |
-| Problem | Vanishing gradient |
+
+| Aspect     | Value              |
+| ---------- | ------------------ |
+| Formula    | 1/(1 + e^(-x))     |
+| Range      | (0, 1)             |
+| Derivative | σ(x)(1-σ(x))       |
+| Problem    | Vanishing gradient |
 
 ---
 
 ### 3.6.2 ReLU (Rectified Linear Unit)
 
 **Formula:**
+
 ```
 f(x) = max(0, x)
      = { x if x > 0
@@ -928,91 +1044,106 @@ f(x) = max(0, x)
 ```
 
 **Properties:**
+
 - Output range: [0, ∞)
 - Linear when positive, zero when negative
 - Most widely used activation in modern networks
 
 **Derivative:**
+
 ```
 f'(x) = { 1 if x > 0
         { 0 if x ≤ 0
 ```
 
 **Advantages:**
+
 - Computationally efficient (simple thresholding)
 - Reduces vanishing gradient problem
 - Converges faster than sigmoid/tanh
 - More biologically plausible
 
 **Problems:**
+
 - Dying ReLU: Neurons can get stuck at 0
 - Not zero-centered
 - Exploding gradient risk (rare)
 
 **Variants:**
+
 - **Leaky ReLU:** f(x) = 0.01x when x < 0
 - **PReLU:** Learnable slope for negative part
 - **ELU:** Exponential linear unit
 
 ### **EXAM POINTS:**
-| Aspect | Value |
-|--------|-------|
-| Formula | max(0, x) |
-| Range | [0, ∞) |
-| Derivative | {1 if x>0, 0 otherwise} |
-| Advantage | Efficient, reduces vanishing gradient |
+
+| Aspect     | Value                                 |
+| ---------- | ------------------------------------- |
+| Formula    | max(0, x)                             |
+| Range      | [0, ∞)                                |
+| Derivative | {1 if x>0, 0 otherwise}               |
+| Advantage  | Efficient, reduces vanishing gradient |
 
 ---
 
 ### 3.6.3 Tanh (Hyperbolic Tangent)
 
 **Formula:**
+
 ```
 tanh(x) = (e^x - e^(-x)) / (e^x + e^(-x))
 ```
 
 **Properties:**
+
 - Output range: (-1, 1)
 - S-shaped, zero-centered
 - Always steeper than sigmoid
 
 **Derivative:**
+
 ```
 tanh'(x) = 1 - tanh²(x)
 ```
 
 **Advantages:**
+
 - Zero-centered (better for hidden layers)
 - Stronger gradient than sigmoid
 - Better convergence than sigmoid
 
 **Problems:**
+
 - Still suffers from vanishing gradient
 - More computationally expensive than ReLU
 
 ### **EXAM POINTS:**
-| Aspect | Value |
-|--------|-------|
-| Formula | (e^x - e^(-x))/(e^x + e^(-x)) |
-| Range | (-1, 1) |
-| Derivative | 1 - tanh²(x) |
-| Advantage | Zero-centered |
+
+| Aspect     | Value                         |
+| ---------- | ----------------------------- |
+| Formula    | (e^x - e^(-x))/(e^x + e^(-x)) |
+| Range      | (-1, 1)                       |
+| Derivative | 1 - tanh²(x)                  |
+| Advantage  | Zero-centered                 |
 
 ---
 
 ### 3.6.4 Softmax Function
 
 **Formula:**
+
 ```
 softmax(xᵢ) = e^(xᵢ) / Σⱼ e^(xⱼ)
 ```
 
 **Properties:**
+
 - Output range: (0, 1)
 - Outputs sum to 1 (probability distribution)
 - Used for multi-class classification
 
 **For a vector:**
+
 ```
 Input:  [z₁, z₂, ..., zₖ]
 Output: [σ₁, σ₂, ..., σₖ]
@@ -1021,6 +1152,7 @@ where σᵢ = e^(zᵢ) / Σ e^(zⱼ)
 ```
 
 **Example:**
+
 ```
 Input: [2.0, 1.0, 0.1]
 
@@ -1034,17 +1166,19 @@ Output: [7.39/11.22, 2.72/11.22, 1.11/11.22]
 ```
 
 **Properties:**
+
 - Larger input → larger probability
 - Outputs are mutually exclusive (sum = 1)
 - Used in output layer for classification
 
 ### **EXAM POINTS:**
-| Activation | Formula | Range | Typical Use |
-|------------|---------|-------|-------------|
-| Sigmoid | 1/(1+e^(-x)) | (0,1) | Binary output |
-| ReLU | max(0,x) | [0,∞) | Hidden layers |
-| Tanh | (e^x-e^(-x))/(e^x+e^(-x)) | (-1,1) | Hidden layers |
-| Softmax | e^(xᵢ)/Σe^(xⱼ) | (0,1) | Multi-class output |
+
+| Activation | Formula                   | Range  | Typical Use        |
+| ---------- | ------------------------- | ------ | ------------------ |
+| Sigmoid    | 1/(1+e^(-x))              | (0,1)  | Binary output      |
+| ReLU       | max(0,x)                  | [0,∞)  | Hidden layers      |
+| Tanh       | (e^x-e^(-x))/(e^x+e^(-x)) | (-1,1) | Hidden layers      |
+| Softmax    | e^(xᵢ)/Σe^(xⱼ)            | (0,1)  | Multi-class output |
 
 ---
 
@@ -1053,6 +1187,7 @@ Output: [7.39/11.22, 2.72/11.22, 1.11/11.22]
 ## 4.1 Loss Functions
 
 ### Definition:
+
 A function that measures the difference between predicted values and actual values. The goal of training is to minimize this loss.
 
 ### 4.1.1 Categorical Cross-Entropy Loss
@@ -1060,6 +1195,7 @@ A function that measures the difference between predicted values and actual valu
 **Use Case:** Multi-class classification problems
 
 **Formula:**
+
 ```
 L = -Σᵢ yᵢ × log(ŷᵢ)
 
@@ -1070,6 +1206,7 @@ where:
 ```
 
 **For one-hot encoded labels:**
+
 ```
 L = -log(ŷₚ)
 
@@ -1077,11 +1214,13 @@ where p = index of true class
 ```
 
 **Properties:**
+
 - Penalizes wrong predictions more heavily when predicted probability is high but wrong
 - Information-theoretic interpretation: measures the "surprise" of predictions
 - Standard loss for multi-class neural network classification
 
 ### **NUMERICAL EXAMPLE:**
+
 ```
 True class: [1, 0, 0] (one-hot, class 0)
 Predicted:  [0.7, 0.2, 0.1] (softmax output)
@@ -1092,11 +1231,13 @@ L = 0.357
 ```
 
 **If prediction was [0.9, 0.05, 0.05]:**
+
 ```
 L = -log(0.9) = 0.105  (better, lower loss)
 ```
 
 ### **EXAM POINTS:**
+
 - Used for multi-class classification
 - One-hot encoded ground truth
 - Lower loss = better predictions
@@ -1109,6 +1250,7 @@ L = -log(0.9) = 0.105  (better, lower loss)
 **Use Case:** Binary classification problems
 
 **Formula:**
+
 ```
 L = -[y × log(ŷ) + (1 - y) × log(1 - ŷ)]
 
@@ -1118,11 +1260,13 @@ where:
 ```
 
 **Alternative form:**
+
 ```
 L = -y × log(ŷ) - (1-y) × log(1-ŷ)
 ```
 
 ### **NUMERICAL EXAMPLE:**
+
 ```
 True label: y = 1
 Predicted: ŷ = 0.8
@@ -1137,6 +1281,7 @@ L = -log(0.3) = 1.204 (higher loss)
 ```
 
 ### **EXAM POINTS:**
+
 - Used for binary classification
 - Paired with sigmoid activation
 - Measures probability of correct class
@@ -1147,12 +1292,14 @@ L = -log(0.3) = 1.204 (higher loss)
 ### 4.1.3 Accuracy Calculation
 
 **Formula:**
+
 ```
 Accuracy = (Correct Predictions) / (Total Predictions)
          = (TP + TN) / (TP + TN + FP + FN)
 ```
 
 **For classification:**
+
 ```python
 # NumPy implementation
 y_pred = model.predict(X)
@@ -1163,11 +1310,13 @@ accuracy = np.mean(y_pred_class == y_true_class)
 ```
 
 **Important Notes:**
+
 - Accuracy is NOT differentiable (can't be used as loss)
 - Used as evaluation metric during training
 - Accuracy can be misleading for imbalanced datasets
 
 ### **EXAM POINTS:**
+
 - Accuracy = proportion of correct predictions
 - Often used alongside loss for monitoring
 - Cross-entropy loss is optimized, accuracy is reported
@@ -1178,9 +1327,11 @@ accuracy = np.mean(y_pred_class == y_true_class)
 ## 4.2 Backpropagation Algorithm
 
 ### Definition:
+
 An algorithm for computing gradients of the loss function with respect to network weights. Uses the chain rule of calculus.
 
 ### Chain Rule:
+
 ```
 If y = f(g(x)), then:
 dy/dx = (df/dg) × (dg/dx)
@@ -1189,17 +1340,20 @@ dy/dx = (df/dg) × (dg/dx)
 ### How Backpropagation Works:
 
 **Step 1: Forward Pass**
+
 ```
 Input → Hidden1 → Hidden2 → Output
        (store activations at each layer)
 ```
 
 **Step 2: Compute Loss**
+
 ```
 L = Loss(y_pred, y_true)
 ```
 
 **Step 3: Backward Pass**
+
 ```
 Compute ∂L/∂W for each layer, working backwards
 Use chain rule at each step
@@ -1208,12 +1362,14 @@ Use chain rule at each step
 ### **Gradient Calculation Example:**
 
 For a simple network:
+
 ```
 Input x → Linear: z₁ = W₁x + b₁ → Activation: a₁ = f(z₁)
        → Linear: z₂ = W₂a₁ + b₂ → Output: ŷ
 ```
 
 **Backward pass (computing gradients):**
+
 ```
 ∂L/∂W₂ = ∂L/∂ŷ × ∂ŷ/∂z₂ × ∂z₂/∂W₂
 
@@ -1221,6 +1377,7 @@ Input x → Linear: z₁ = W₁x + b₁ → Activation: a₁ = f(z₁)
 ```
 
 ### **Weight Update:**
+
 ```
 W_new = W_old - η × (∂L/∂W)
 
@@ -1228,6 +1385,7 @@ where η = learning rate
 ```
 
 ### **EXAM POINTS:**
+
 - Backpropagation efficiently computes gradients
 - Uses chain rule from calculus
 - Propagates error from output to input
@@ -1239,6 +1397,7 @@ where η = learning rate
 ## 4.3 Optimizers
 
 ### Definition:
+
 Algorithms that update network weights based on computed gradients to minimize the loss function.
 
 ---
@@ -1246,6 +1405,7 @@ Algorithms that update network weights based on computed gradients to minimize t
 ### 4.3.1 Stochastic Gradient Descent (SGD)
 
 **Formula:**
+
 ```
 θ = θ - η × ∇L(θ)
 
@@ -1256,16 +1416,19 @@ where:
 ```
 
 **Process:**
+
 1. Take random mini-batch of data
 2. Compute gradient of loss for that batch
 3. Update parameters in opposite direction of gradient
 
 **Variants:**
+
 - **Batch GD:** Use entire dataset (slow, stable)
 - **Mini-batch GD:** Use small batches (common practice)
 - **SGD:** Batch size = 1 (noisy, fast)
 
 **Parameters:**
+
 ```python
 optimizer = SGD(lr=0.01)
 # or with momentum
@@ -1273,6 +1436,7 @@ optimizer = SGD(lr=0.01, momentum=0.9)
 ```
 
 ### **EXAM POINTS:**
+
 - Most basic optimizer
 - Learning rate is critical hyperparameter
 - Too high = divergence
@@ -1287,6 +1451,7 @@ optimizer = SGD(lr=0.01, momentum=0.9)
 **Definition:** Step size for parameter updates.
 
 **Effect:**
+
 - **High LR:** Fast learning, may overshoot, unstable
 - **Low LR:** Stable, slow learning, may get stuck
 
@@ -1297,27 +1462,32 @@ optimizer = SGD(lr=0.01, momentum=0.9)
 **Common Methods:**
 
 **1. Step Decay:**
+
 ```python
 lr = initial_lr × (decay_factor ^ (epoch / decay_epochs))
 ```
 
 **2. Exponential Decay:**
+
 ```python
 lr = initial_lr × exp(-decay_rate × epoch)
 ```
 
 **3. Inverse Scaling:**
+
 ```python
 lr = initial_lr / (1 + decay_rate × epoch)
 ```
 
 **4. Reduce on Plateau:**
+
 ```python
 # Reduce LR when metric stops improving
 # Monitor validation loss, reduce by factor when plateau
 ```
 
 ### **EXAM POINTS:**
+
 - Learning rate is the most important hyperparameter
 - Decay helps convergence near optimum
 - Common starting values: 0.1, 0.01, 0.001
@@ -1328,6 +1498,7 @@ lr = initial_lr / (1 + decay_rate × epoch)
 ### 4.3.3 SGD with Momentum
 
 **Formula:**
+
 ```
 v = γ × v_prev + η × ∇L(θ)
 θ = θ - v
@@ -1339,16 +1510,19 @@ where:
 ```
 
 **Effect:**
+
 - Accelerates convergence in right direction
 - Dampens oscillations
 - Helps escape local minima
 
 **Physical Interpretation:**
+
 - Like a ball rolling downhill
 - Momentum carries it through flat regions
 - Resists sharp turns
 
 ### **NUMERICAL EXAMPLE:**
+
 ```python
 # Without momentum (standard SGD)
 Δθ = -0.01 × gradient
@@ -1359,6 +1533,7 @@ v = 0.9 × v_prev + 0.01 × gradient
 ```
 
 ### **EXAM POINTS:**
+
 - Momentum adds "inertia" to updates
 - Default momentum: 0.9
 - Helps with:
@@ -1371,6 +1546,7 @@ v = 0.9 × v_prev + 0.01 × gradient
 ### 4.3.4 AdaGrad (Adaptive Gradient)
 
 **Formula:**
+
 ```
 θ = θ - (η / √G + ε) × ∇L(θ)
 
@@ -1380,27 +1556,31 @@ where:
 ```
 
 **Key Features:**
+
 - Adapts learning rate for each parameter
 - Parameters with large gradients get smaller updates
 - Parameters with small gradients get larger updates
 - Good for sparse data
 
 **Problem:**
+
 - Accumulated gradient keeps growing
 - Learning rate can become too small
 - May stop learning too early
 
 ### **EXAM POINTS:**
-| Optimizer | Learning Rate Adaptation |
-|-----------|-------------------------|
-| SGD | Fixed for all parameters |
-| AdaGrad | Per-parameter, decreasing |
+
+| Optimizer | Learning Rate Adaptation  |
+| --------- | ------------------------- |
+| SGD       | Fixed for all parameters  |
+| AdaGrad   | Per-parameter, decreasing |
 
 ---
 
 ### 4.3.5 RMSProp (Root Mean Square Propagation)
 
 **Formula:**
+
 ```
 E[g²] = γ × E[g²_prev] + (1-γ) × g²
 
@@ -1413,11 +1593,13 @@ where:
 ```
 
 **Improvement over AdaGrad:**
+
 - Uses exponential moving average instead of sum
 - Prevents learning rate from becoming too small
 - Better for non-stationary problems
 
 ### **EXAM POINTS:**
+
 - Adaptive learning rate per parameter
 - Addresses AdaGrad's diminishing learning rate problem
 - Popular choice, especially for RNNs
@@ -1430,11 +1612,12 @@ where:
 **Definition:** Combines momentum and RMSProp ideas.
 
 **Algorithm:**
+
 ```
 # First moment (momentum-like)
 m = β₁ × m + (1 - β₁) × g
 
-# Second moment (RMSProp-like)  
+# Second moment (RMSProp-like)
 v = β₂ × v + (1 - β₂) × g²
 
 # Bias correction
@@ -1446,24 +1629,27 @@ v_hat = v / (1 - β₂^t)
 ```
 
 **Default Parameters:**
+
 - β₁ = 0.9 (first moment decay)
 - β₂ = 0.999 (second moment decay)
 - ε = 1e-8
 
 **Advantages:**
+
 - Combines benefits of momentum and RMSProp
 - Works well for most problems
 - Default optimizer for many applications
 - Good default hyperparameters
 
 ### **EXAM POINTS:**
-| Optimizer | Key Feature | Best For |
-|-----------|-------------|----------|
-| SGD | Simple, reliable | Baseline |
-| SGD+Momentum | Faster convergence | General |
-| AdaGrad | Per-param adaptation | Sparse data |
-| RMSProp | Adaptive, less decay | RNNs |
-| Adam | Combined benefits | Default choice |
+
+| Optimizer    | Key Feature          | Best For       |
+| ------------ | -------------------- | -------------- |
+| SGD          | Simple, reliable     | Baseline       |
+| SGD+Momentum | Faster convergence   | General        |
+| AdaGrad      | Per-param adaptation | Sparse data    |
+| RMSProp      | Adaptive, less decay | RNNs           |
+| Adam         | Combined benefits    | Default choice |
 
 ---
 
@@ -1483,6 +1669,7 @@ Input Image → [Conv Layer] → [Pooling] → [Conv Layer] → ... → [FC Laye
 **Definition:** A mathematical operation that combines two functions to produce a third function.
 
 **In CNNs:**
+
 ```
 Output = Input * Kernel
 
@@ -1492,6 +1679,7 @@ where * = convolution operation
 ### **2D Convolution Process:**
 
 **Step-by-step:**
+
 1. Place kernel over input image (at top-left)
 2. Multiply corresponding elements
 3. Sum all products
@@ -1500,6 +1688,7 @@ where * = convolution operation
 6. Repeat until entire image processed
 
 ### **NUMERICAL EXAMPLE:**
+
 ```
 Input (3×4 matrix):           Kernel (2×2):
 [1  2  3  1]                  [1  0]
@@ -1514,6 +1703,7 @@ Position (0,1): 2×1 + 3×0 + 5×0 + 6×1 = 2 + 0 + 0 + 6 = 8
 ```
 
 ### **EXAM POINTS:**
+
 - Convolution extracts spatial features
 - Kernel slides across entire image
 - Each position produces one output value
@@ -1524,16 +1714,19 @@ Position (0,1): 2×1 + 3×0 + 5×0 + 6×1 = 2 + 0 + 0 + 6 = 8
 ### 5.1.2 Convolution with and without Kernel Flipping
 
 **With Kernel Flipping (Cross-correlation in practice):**
+
 - Most deep learning frameworks implement cross-correlation
 - Often called "convolution" colloquially
 - Kernel is NOT mathematically flipped
 
 **Without Kernel Flipping (True Convolution):**
+
 - Kernel is rotated 180° before sliding
 - Produces same result as flipped cross-correlation
 - Used in signal processing theory
 
 **Practical Note:**
+
 ```
 True Convolution: (f * g)(t) = ∫ f(τ)g(t-τ)dτ
 
@@ -1541,6 +1734,7 @@ Cross-Correlation: (f ★ g)(t) = ∫ f(τ)g(t+τ)dτ
 ```
 
 **In CNNs:**
+
 - Frameworks use cross-correlation (no flipping)
 - But call it convolution (accepted convention)
 - Results are same because kernels are learned anyway
@@ -1550,11 +1744,13 @@ Cross-Correlation: (f ★ g)(t) = ∫ f(τ)g(t+τ)dτ
 ### 5.1.3 Key Concepts
 
 **1. Stride:**
+
 - Number of pixels kernel moves at each step
 - Larger stride → smaller output
 - Reduces computation
 
 **Formula for output size:**
+
 ```
 Output_size = (N - F) / stride + 1
 
@@ -1564,16 +1760,19 @@ where:
 ```
 
 **2. Padding:**
+
 - Adding zeros around input
 - Controls output size
 - Preserves spatial dimensions
 
 **Common settings:**
+
 - F = 3 → pad with 1
 - F = 5 → pad with 2
 - F = 7 → pad with 3
 
 **Formula with padding:**
+
 ```
 Output_size = (N + 2P - F) / stride + 1
 
@@ -1581,22 +1780,25 @@ where P = padding size
 ```
 
 ### **EXAM POINTS:**
-| Parameter | Effect |
-|-----------|--------|
-| Stride | Controls output size, larger = smaller output |
-| Padding | Preserves size, adds zeros |
-| Kernel size | Larger = larger receptive field |
+
+| Parameter   | Effect                                        |
+| ----------- | --------------------------------------------- |
+| Stride      | Controls output size, larger = smaller output |
+| Padding     | Preserves size, adds zeros                    |
+| Kernel size | Larger = larger receptive field               |
 
 ---
 
 ## 5.2 Pooling
 
 ### Definition:
+
 A downsampling operation that reduces spatial dimensions while retaining important features.
 
 ### Types:
 
 **1. Max Pooling:**
+
 ```
 [1  3  2  1]      [3  2]
 [5  2  1  3]  →   [6  4]  (2×2 pool, stride 2)
@@ -1605,11 +1807,13 @@ A downsampling operation that reduces spatial dimensions while retaining importa
 ```
 
 **Properties:**
+
 - Preserves strongest activation
 - Translation invariant
 - Reduces dimensions by factor of 2
 
 **2. Average Pooling:**
+
 ```
 - Takes average of values in pool region
 - Smoother than max pooling
@@ -1617,29 +1821,34 @@ A downsampling operation that reduces spatial dimensions while retaining importa
 ```
 
 ### **Why Pooling Works:**
+
 1. **Reduces computation** in subsequent layers
 2. **Provides translation invariance** (small shifts don't change output)
 3. **Controls overfitting** by reducing parameters
 4. **Makes features robust** to small variations
 
 ### **EXAM POINTS:**
-| Type | Output | Best For |
-|------|--------|----------|
-| Max | Maximum value | Edge detection, strong features |
-| Average | Mean value | Smoothing, background |
+
+| Type    | Output        | Best For                        |
+| ------- | ------------- | ------------------------------- |
+| Max     | Maximum value | Edge detection, strong features |
+| Average | Mean value    | Smoothing, background           |
 
 ---
 
 ## 5.3 Sparse Interactions (Local Connectivity)
 
 ### Concept:
+
 Unlike fully connected layers where each neuron connects to all inputs, CNN neurons only connect to local regions.
 
 ### Receptive Field:
+
 - The region of input that a neuron can "see"
 - Increases with depth (deeper layers have larger receptive fields)
 
 **Example:**
+
 ```
 Layer 1: Each neuron sees 3×3 input region
 Layer 2: Each neuron sees 5×5 region (through layer 1)
@@ -1648,6 +1857,7 @@ Layer 3: Each neuron sees 7×7 region
 ```
 
 ### **BENEFITS:**
+
 1. **Reduced parameters:** Fewer connections = fewer weights
 2. **Efficient computation:** Less computation needed
 3. **Feature locality:** Detects local patterns (edges, textures)
@@ -1656,16 +1866,19 @@ Layer 3: Each neuron sees 7×7 region
 ### **COMPARISON:**
 
 **Fully Connected (200×200 image):**
+
 ```
 40,000 hidden units × 200×200 inputs = 1.6 billion parameters!
 ```
 
 **Locally Connected (200×200 image, 10×10 receptive field):**
+
 ```
 40,000 hidden units × 10×10 inputs = 4 million parameters
 ```
 
 ### **EXAM POINTS:**
+
 - Sparse connections reduce parameters dramatically
 - Each neuron only "sees" a local patch
 - Deeper layers have larger receptive fields
@@ -1676,9 +1889,11 @@ Layer 3: Each neuron sees 7×7 region
 ## 5.4 Parameter Sharing
 
 ### Definition:
+
 The same weight values are used at different positions in the network.
 
 ### Example:
+
 ```
 If kernel detects "edge" at one position, same kernel detects
 edges at ALL positions in the image
@@ -1697,6 +1912,7 @@ edges at ALL positions in the image
 ### **PARAMETER COUNT COMPARISON:**
 
 **Without Parameter Sharing (Locally Connected):**
+
 ```
 For 200×200 image with 100 filters, 10×10 receptive field:
 Parameters = 100 × (10×10) × (number of positions)
@@ -1704,6 +1920,7 @@ Parameters = 100 × (10×10) × (number of positions)
 ```
 
 **With Parameter Sharing (Convolution):**
+
 ```
 For 200×200 image with 100 filters, 10×10 receptive field:
 Parameters = 100 × (10×10) = 10,000
@@ -1711,6 +1928,7 @@ Parameters = 100 × (10×10) = 10,000
 ```
 
 ### **EXAM POINTS:**
+
 - Parameter sharing is fundamental to CNNs
 - Dramatically reduces model size
 - Enables translation equivariance
@@ -1721,16 +1939,20 @@ Parameters = 100 × (10×10) = 10,000
 ## 5.5 Equivariant Representations
 
 ### Definition:
+
 A function f is equivariant to transformation T if:
+
 ```
 f(T(x)) = T(f(x))
 ```
 
 **In CNNs:**
+
 - Translation equivariance: If input shifts, feature map shifts by same amount
 - Enables detection of features regardless of position
 
 ### **Practical Implication:**
+
 ```
 Input: Image with cat at position (10, 10)
 Kernel: Detects cat ears
@@ -1741,6 +1963,7 @@ After convolution:
 ```
 
 ### **EXAM POINTS:**
+
 - CNN features are translation equivariant
 - This is why CNNs work well for images
 - Makes position detection explicit in feature maps
@@ -1754,20 +1977,24 @@ After convolution:
 **Prior:** Assumptions about the model before seeing data.
 
 **Convolution Prior:**
+
 - Features should be detected anywhere in image (translation invariance)
 - Features should be local (sparse connectivity)
 - Same features at all positions (parameter sharing)
 
 **Pool Prior:**
+
 - Features should be robust to small translations
 - Spatial hierarchy via downsampling
 
 ### **Why "Infinitely Strong"?**
+
 - These constraints are so powerful they essentially determine the architecture
 - Very difficult to override even with infinite data
 - Appropriate for images due to natural structure
 
 ### **EXAM POINTS:**
+
 - CNNs encode strong priors about image structure
 - These priors come from knowledge about images
 - Makes CNNs data-efficient for image tasks
@@ -1782,13 +2009,15 @@ After convolution:
 **Developed by:** Yann LeCun (1998)
 
 **Architecture:**
+
 ```
-INPUT (32×32) → CONV (6, 5×5) → AVG POOL (2×2) 
-→ CONV (16, 5×5) → AVG POOL (2×2) 
+INPUT (32×32) → CONV (6, 5×5) → AVG POOL (2×2)
+→ CONV (16, 5×5) → AVG POOL (2×2)
 → FC (120) → FC (84) → OUTPUT (10)
 ```
 
 **Key Features:**
+
 - First successful CNN for digit recognition
 - Used for MNIST handwritten digits
 - Average pooling (not max)
@@ -1797,6 +2026,7 @@ INPUT (32×32) → CONV (6, 5×5) → AVG POOL (2×2)
 **Applications:** Document recognition, ATM check reading
 
 ### **EXAM POINTS:**
+
 - Pioneering CNN architecture
 - Established many principles still used
 - Small by modern standards
@@ -1809,16 +2039,18 @@ INPUT (32×32) → CONV (6, 5×5) → AVG POOL (2×2)
 **Developed by:** Alex Krizhevsky, Ilya Sutskever, Geoffrey Hinton (2012)
 
 **Architecture:**
+
 ```
-INPUT (227×227×3) 
+INPUT (227×227×3)
 → CONV (96, 11×11, stride=4) → MAX POOL (3×3) → NORM
-→ CONV (256, 5×5) → MAX POOL (3×3) → NORM  
+→ CONV (256, 5×5) → MAX POOL (3×3) → NORM
 → CONV (384, 3×3) × 2
 → CONV (256, 3×3) → MAX POOL (3×3)
 → FC (4096) → FC (4096) → OUTPUT (1000)
 ```
 
 **Key Features:**
+
 - Won ImageNet competition 2012 (by large margin)
 - First major "deep" CNN breakthrough
 - Used ReLU activation
@@ -1829,6 +2061,7 @@ INPUT (227×227×3)
 **Parameters:** ~60 million
 
 ### **EXAM POINTS:**
+
 - Landmark architecture that revived deep learning
 - Showed power of deep CNNs
 - Many innovations: ReLU, dropout, data augmentation
@@ -1843,6 +2076,7 @@ INPUT (227×227×3)
 **Key Innovation: Skip Connections**
 
 **Architecture Concept:**
+
 ```
 Standard:     x → [Linear] → [ReLU] → [Linear] → output
 With Skip:    x → [Linear] → [ReLU] → [Linear] → ⊕ → output
@@ -1851,6 +2085,7 @@ With Skip:    x → [Linear] → [ReLU] → [Linear] → ⊕ → output
 ```
 
 **Residual Block:**
+
 ```
 output = F(x) + x
 
@@ -1858,19 +2093,22 @@ where F(x) = learned residual
 ```
 
 **Why Skip Connections Work:**
+
 1. **Easier optimization:** Learning identity is trivial (just set F(x)=0)
 2. **Vanishing gradient:** Gradient flows directly through shortcut
 3. **Enables deeper networks:** Can train 100+ layer networks
 
 ### **ResNet Architecture Variants:**
-| Model | Layers | Parameters |
-|-------|--------|------------|
-| ResNet-18 | 18 | 11.7M |
-| ResNet-34 | 34 | 21.8M |
-| ResNet-50 | 50 | 25.6M |
-| ResNet-101 | 101 | 44.5M |
+
+| Model      | Layers | Parameters |
+| ---------- | ------ | ---------- |
+| ResNet-18  | 18     | 11.7M      |
+| ResNet-34  | 34     | 21.8M      |
+| ResNet-50  | 50     | 25.6M      |
+| ResNet-101 | 101    | 44.5M      |
 
 ### **EXAM POINTS:**
+
 - Introduced skip/residual connections
 - Enabled training of very deep networks
 - Won ImageNet 2015
@@ -1884,11 +2122,13 @@ where F(x) = learned residual
 ### 5.8.1 Unfolding Computational Graphs
 
 ### Concept:
+
 RNNs process sequences by "unfolding" the network through time - each time step creates a new copy of the network with shared weights.
 
 ### **Unfolding Process:**
 
 **For sequence with 3 time steps:**
+
 ```
 Time 0:  x(0) → [Hidden h(0)] → [Output y(0)]
 Time 1:  x(1) → [Hidden h(1)] → [Output y(1)]
@@ -1899,12 +2139,14 @@ h(t) depends on h(t-1) and x(t)
 ```
 
 ### **Mathematical Representation:**
+
 ```
 h(t) = f(W×x(t) + U×h(t-1) + b)
 y(t) = V×h(t) + c
 ```
 
 ### **EXAM POINTS:**
+
 - RNNs unfold through time
 - Same weights shared across time steps
 - Hidden state carries information from previous steps
@@ -1915,30 +2157,36 @@ y(t) = V×h(t) + c
 ### 5.8.2 Teacher Forcing
 
 ### Definition:
+
 A training technique where the model uses actual previous output (instead of model's prediction) as input for next time step.
 
 ### **Without Teacher Forcing:**
+
 ```
 y_pred(0) → fed to model → y_pred(1) → ...
 (Errors can compound)
 ```
 
 ### **With Teacher Forcing:**
+
 ```
 y_true(0) → fed to model → y_pred(1) → ...
 (Stable training)
 ```
 
 ### **Benefits:**
+
 - Faster convergence during training
 - More stable gradients
 - Enables training of deep RNNs
 
 ### **Drawbacks:**
+
 - May not match test-time behavior (if using predicted outputs)
 - Often corrected with curriculum learning
 
 ### **EXAM POINTS:**
+
 - Teacher forcing speeds up training
 - Uses ground truth instead of predictions
 - Common technique for sequence-to-sequence models
@@ -1949,6 +2197,7 @@ y_true(0) → fed to model → y_pred(1) → ...
 ### 5.8.3 Recurrent Neural Network (Basic)
 
 ### Architecture:
+
 ```
 x(t) ──┐
        ├──→ [U] → [Hidden h(t)] → [V] → y(t)
@@ -1957,6 +2206,7 @@ h(t-1) ┘  ↑
 ```
 
 ### **Equations:**
+
 ```
 h(t) = f(U×x(t) + W×h(t-1) + b)
 y(t) = g(V×h(t) + c)
@@ -1965,6 +2215,7 @@ where f = tanh or sigmoid, g = output activation
 ```
 
 ### **Processing a Sequence:**
+
 ```
 h(0) = initial_state
 For each t:
@@ -1975,17 +2226,20 @@ For each t:
 ### **KEY PROBLEMS:**
 
 **1. Vanishing Gradients:**
+
 - When backpropagating through many time steps
 - Gradients shrink exponentially
 - Network fails to learn long-range dependencies
 - Error signal from far steps becomes negligible
 
 **2. Exploding Gradients:**
+
 - Gradients grow exponentially
 - Training becomes unstable
 - Can be mitigated with gradient clipping
 
 ### **EXAM POINTS:**
+
 - RNNs process sequential data
 - Hidden state provides "memory"
 - Suffers from vanishing/exploding gradients
@@ -1996,9 +2250,11 @@ For each t:
 ### 5.8.4 Backpropagation Through Time (BPTT)
 
 ### Definition:
+
 The algorithm for training RNNs by extending backpropagation to the unfolded network through time.
 
 ### **Steps:**
+
 ```
 1. Forward pass through entire sequence
    - Store all x(t), h(t), y(t) values
@@ -2014,6 +2270,7 @@ The algorithm for training RNNs by extending backpropagation to the unfolded net
 ```
 
 ### **Gradient Flow:**
+
 ```
 ∂L/∂W = Σ (∂L(t)/∂W) over all time steps t
 
@@ -2022,6 +2279,7 @@ all intermediate time steps
 ```
 
 ### **Vanishing in BPTT:**
+
 ```
 ∂h(t)/∂h(t-k) = Π(∂h(i+1)/∂h(i)) for i=t-k to t-1
 
@@ -2031,6 +2289,7 @@ This product of Jacobians:
 ```
 
 ### **EXAM POINTS:**
+
 - BPTT extends backprop to sequence processing
 - Computationally expensive (proportional to sequence length)
 - Suffers from same vanishing/exploding gradient problems
@@ -2041,9 +2300,11 @@ This product of Jacobians:
 ### 5.8.5 Bidirectional RNNs
 
 ### Concept:
+
 Two RNNs process the same sequence in opposite directions - one forward, one backward. Outputs are combined.
 
 ### **Architecture:**
+
 ```
 Forward:  x(0) → x(1) → x(2) → ... → h_f(t)
 Backward: x(T) → x(T-1) → x(T-2) → ... → h_b(t)
@@ -2053,21 +2314,25 @@ h(t) = [h_f(t); h_b(t)]  (concatenated)
 ```
 
 ### **Benefits:**
+
 - Can use context from both directions
 - Each position sees past AND future context
 - Better for tasks where full context is available
 
 ### **Limitations:**
+
 - Requires knowing entire sequence (can't process streaming)
 - More computation (two RNNs)
 - More memory (must store entire sequence)
 
 ### **Applications:**
+
 - NLP tasks (where full sentence available)
 - Handwriting recognition
 - Time series prediction (if full series known)
 
 ### **EXAM POINTS:**
+
 - Bidirectional RNNs use forward and backward passes
 - Each position gets context from past AND future
 - Cannot be used for real-time streaming
@@ -2078,22 +2343,26 @@ h(t) = [h_f(t); h_b(t)]  (concatenated)
 ### 5.8.6 Deep Recurrent Networks
 
 ### Concept:
+
 Stack multiple RNN layers, creating hierarchical representations.
 
 ### **Architecture:**
+
 ```
 Layer 1: x(t) → RNN₁ → h₁(t)
-Layer 2: h₁(t) → RNN₂ → h₂(t)  
+Layer 2: h₁(t) → RNN₂ → h₂(t)
 Layer 3: h₂(t) → RNN₃ → h₃(t) → output
 ```
 
 ### **Properties:**
+
 - Each layer creates increasingly abstract representations
 - Layer 1: Low-level features
 - Layer 2: Higher-level patterns
 - Layer 3: Complex features
 
 ### **Deep vs Shallow:**
+
 ```
 Shallow RNN (1 layer):  h(t) = f(x(t), h(t-1))
 Deep RNN (3 layers):    h³(t) = f(h²(t-1), h³(t-1))
@@ -2102,6 +2371,7 @@ Deep RNN (3 layers):    h³(t) = f(h²(t-1), h³(t-1))
 ```
 
 ### **EXAM POINTS:**
+
 - Deep RNNs have multiple stacked layers
 - Creates hierarchical feature representations
 - More expressive than shallow RNNs
@@ -2116,14 +2386,17 @@ Deep RNN (3 layers):    h³(t) = f(h²(t-1), h³(t-1))
 **Developed by:** Sepp Hochreiter and Jürgen Schmidhuber (1997)
 
 ### **Why LSTM?**
+
 Standard RNNs cannot learn long-term dependencies due to vanishing gradients. LSTMs solve this with a specialized architecture that allows information to persist for long periods.
 
 ### **Key Innovation: Memory Cell**
+
 - Maintains a "cell state" (memory) that flows through time
 - Gates control what to add, remove, or keep
 - Can learn to store information for arbitrary lengths
 
 ### **LSTM Architecture:**
+
 ```
 x(t) ──┐
        │
@@ -2134,11 +2407,13 @@ c(t-1) ──┘         ↓
 ```
 
 ### **Three Gates:**
+
 1. **Forget Gate:** Decides what to forget from cell state
 2. **Input Gate:** Decides what new information to store
 3. **Output Gate:** Decides what to output from cell state
 
 ### **EXAM POINTS:**
+
 - LSTMs address vanishing gradient problem
 - Memory cell persists information across time
 - Gates regulate information flow
@@ -2149,6 +2424,7 @@ c(t-1) ──┘         ↓
 ### 5.9.2 LSTM Equations and Gate Operations
 
 ### **Let-Defines:**
+
 ```
 x(t): Input vector
 h(t-1): Previous hidden state
@@ -2161,46 +2437,55 @@ tanh: Hyperbolic tangent function
 ```
 
 ### **Step 1: Forget Gate**
+
 ```
 f(t) = σ(W_f × [h(t-1), x(t)] + b_f)
 ```
+
 - Decides what to forget from cell state
 - f(t) values close to 0 → forget
 - f(t) values close to 1 → keep
 
 ### **Step 2: Input Gate (and candidate values)**
+
 ```
 i(t) = σ(W_i × [h(t-1), x(t)] + b_i)
 C̃(t) = tanh(W_c × [h(t-1), x(t)] + b_c)
 ```
+
 - i(t): Decides which positions to update
 - C̃(t): New candidate values to add
 
 ### **Step 3: Update Cell State**
+
 ```
 c(t) = f(t) ⊙ c(t-1) + i(t) ⊙ C̃(t)
 ```
+
 - Forget old information
 - Add new information
 
 ### **Step 4: Output Gate**
+
 ```
 o(t) = σ(W_o × [h(t-1), x(t)] + b_o)
 h(t) = o(t) ⊙ tanh(c(t))
 ```
+
 - Decides what parts of cell state to output
 - Output is filtered, relevant portion of cell state
 
 ### **SUMMARY TABLE:**
 
-| Gate | Purpose | Equation | Activation |
-|------|---------|----------|------------|
-| Forget (f) | What to forget | σ(W_f[h(t-1),x(t)]+b_f) | (0,1) |
-| Input (i) | What to add | σ(W_i[h(t-1),x(t)]+b_i) | (0,1) |
-| Output (o) | What to output | σ(W_o[h(t-1),x(t)]+b_o) | (0,1) |
-| Candidate (C̃) | New info | tanh(W_c[h(t-1),x(t)]+b_c) | (-1,1) |
+| Gate          | Purpose        | Equation                   | Activation |
+| ------------- | -------------- | -------------------------- | ---------- |
+| Forget (f)    | What to forget | σ(W_f[h(t-1),x(t)]+b_f)    | (0,1)      |
+| Input (i)     | What to add    | σ(W_i[h(t-1),x(t)]+b_i)    | (0,1)      |
+| Output (o)    | What to output | σ(W_o[h(t-1),x(t)]+b_o)    | (0,1)      |
+| Candidate (C̃) | New info       | tanh(W_c[h(t-1),x(t)]+b_c) | (-1,1)     |
 
 ### **NUMERICAL EXAMPLE (Conceptual):**
+
 ```
 Suppose c(t-1) = [0.9, 0.1, 0.8] (old memory)
 f(t) = [0.9, 0.1, 0.5] (forget gate)
@@ -2209,6 +2494,7 @@ After forgetting: f(t) ⊙ c(t-1) = [0.81, 0.01, 0.40]
 ```
 
 ### **EXAM POINTS:**
+
 - Gates use sigmoid (output 0-1) to control flow
 - tanh generates candidate values (-1 to 1)
 - Cell state updated via element-wise operations
@@ -2219,6 +2505,7 @@ After forgetting: f(t) ⊙ c(t-1) = [0.81, 0.01, 0.40]
 ### 5.9.3 LSTM - Practical Example
 
 ### **Text Processing Example:**
+
 ```
 Sentence: "Bob knows swimming. He told me that he served in the navy."
 
@@ -2226,12 +2513,14 @@ Task: At "He", LSTM should remember Bob (not person currently being discussed)
 ```
 
 **Processing:**
+
 1. At "Bob": Input gate stores "Bob knows swimming" → cell state
 2. At ".": Cell state still contains Bob info
 3. At "He": Forget gate keeps Bob-related info, forgets position
 4. LSTM knows "He" refers to Bob
 
 ### **EXAM POINTS:**
+
 - LSTMs can track long-term dependencies
 - Cell state acts as "long-term memory"
 - Gates control read/write/forget operations
@@ -2242,48 +2531,57 @@ Task: At "He", LSTM should remember Bob (not person currently being discussed)
 ## 5.10 Gated Recurrent Unit (GRU)
 
 ### Definition:
+
 A simplified variant of LSTM that combines forget and input gates into a single "update gate."
 
 ### **Key Differences from LSTM:**
 
-| Feature | LSTM | GRU |
-|---------|------|-----|
-| Gates | 3 (forget, input, output) | 2 (update, reset) |
-| Cell State | Yes | No (only hidden state) |
-| Parameters | More | Fewer |
-| Performance | Similar | Often comparable |
+| Feature     | LSTM                      | GRU                    |
+| ----------- | ------------------------- | ---------------------- |
+| Gates       | 3 (forget, input, output) | 2 (update, reset)      |
+| Cell State  | Yes                       | No (only hidden state) |
+| Parameters  | More                      | Fewer                  |
+| Performance | Similar                   | Often comparable       |
 
 ### **GRU Equations:**
 
 **Update Gate:**
+
 ```
 z(t) = σ(W_z × [h(t-1), x(t)])
 ```
+
 - Controls how much previous state to keep
 
 **Reset Gate:**
+
 ```
 r(t) = σ(W_r × [h(t-1), x(t)])
 ```
+
 - Controls how much previous state to forget
 
 **Candidate Hidden State:**
+
 ```
 h̃(t) = tanh(W × [r(t) ⊙ h(t-1), x(t)])
 ```
 
 **Hidden State Update:**
+
 ```
 h(t) = (1 - z(t)) ⊙ h(t-1) + z(t) ⊙ h̃(t)
 ```
 
 ### **Interpretation:**
+
 ```
 When z(t) is close to 1: h(t) ≈ h̃(t) (keep more new)
 When z(t) is close to 0: h(t) ≈ h(t-1) (keep more old)
 ```
 
 ### **EXAM POINTS:**
+
 - GRU is simplified LSTM
 - Fewer parameters, faster training
 - Often works as well as LSTM
@@ -2296,34 +2594,34 @@ When z(t) is close to 0: h(t) ≈ h(t-1) (keep more old)
 
 ## Topics Covered in Provided Materials:
 
-| Unit | Topic | Coverage |
-|------|-------|----------|
-| I | Components of Image Processing System | ✅ Basic concepts |
-| I | Sampling and Quantization | ✅ Core concepts |
-| I | Spatial and Intensity Resolution | ✅ With formulas |
-| I | Neighbors and Connectivity | ✅ 4-neighbor, 8-neighbor, connectivity |
-| I | Applications | ✅ Listed domains |
-| I | Basic Gray Level Transformations | ✅ Transformations covered |
-| II | Affine Transformations | ✅ Basic transformations |
-| II | Spatial Filtering | ✅ Covered in Fourier context |
-| II | Smoothing and Sharpening Filters | ✅ Explained |
-| II | Combining Methods | ✅ Strategy covered |
-| III | Weights and Bias Significance | ✅ Explained |
-| III | Single Neuron Working | ✅ With examples |
-| III | Layer Working | ✅ Dense layer |
-| III | NumPy Implementation | ✅ Code examples |
-| III | Activation Functions | ✅ All four functions |
-| IV | Loss Functions | ✅ Cross-entropy both types |
-| IV | Backpropagation | ✅ Algorithm explained |
-| IV | Optimizers | ✅ All covered (SGD to Adam) |
-| V | CNN Components | ✅ All covered |
-| V | CNN Architectures | ✅ LeNet, AlexNet, ResNet |
-| V | RNN Basics | ✅ Explained |
-| V | BPTT | ✅ Algorithm covered |
-| V | Bidirectional RNNs | ✅ Explained |
-| V | Deep RNNs | ✅ Covered |
-| V | LSTM | ✅ Full explanation |
-| V | GRU | ✅ Explained |
+| Unit | Topic                                 | Coverage                                |
+| ---- | ------------------------------------- | --------------------------------------- |
+| I    | Components of Image Processing System | ✅ Basic concepts                       |
+| I    | Sampling and Quantization             | ✅ Core concepts                        |
+| I    | Spatial and Intensity Resolution      | ✅ With formulas                        |
+| I    | Neighbors and Connectivity            | ✅ 4-neighbor, 8-neighbor, connectivity |
+| I    | Applications                          | ✅ Listed domains                       |
+| I    | Basic Gray Level Transformations      | ✅ Transformations covered              |
+| II   | Affine Transformations                | ✅ Basic transformations                |
+| II   | Spatial Filtering                     | ✅ Covered in Fourier context           |
+| II   | Smoothing and Sharpening Filters      | ✅ Explained                            |
+| II   | Combining Methods                     | ✅ Strategy covered                     |
+| III  | Weights and Bias Significance         | ✅ Explained                            |
+| III  | Single Neuron Working                 | ✅ With examples                        |
+| III  | Layer Working                         | ✅ Dense layer                          |
+| III  | NumPy Implementation                  | ✅ Code examples                        |
+| III  | Activation Functions                  | ✅ All four functions                   |
+| IV   | Loss Functions                        | ✅ Cross-entropy both types             |
+| IV   | Backpropagation                       | ✅ Algorithm explained                  |
+| IV   | Optimizers                            | ✅ All covered (SGD to Adam)            |
+| V    | CNN Components                        | ✅ All covered                          |
+| V    | CNN Architectures                     | ✅ LeNet, AlexNet, ResNet               |
+| V    | RNN Basics                            | ✅ Explained                            |
+| V    | BPTT                                  | ✅ Algorithm covered                    |
+| V    | Bidirectional RNNs                    | ✅ Explained                            |
+| V    | Deep RNNs                             | ✅ Covered                              |
+| V    | LSTM                                  | ✅ Full explanation                     |
+| V    | GRU                                   | ✅ Explained                            |
 
 ---
 
@@ -2342,6 +2640,7 @@ Adam: Combines momentum + RMSProp
 ```
 
 ## Important Diagrams to Remember:
+
 1. CNN architecture (Conv → Pool → FC)
 2. LSTM cell with gates
 3. RNN unfolding through time
@@ -2349,6 +2648,7 @@ Adam: Combines momentum + RMSProp
 5. Feature hierarchy in deep CNN
 
 ## Common Exam Questions:
+
 1. Explain convolution operation with example
 2. Difference between Max and Average pooling
 3. Why LSTM over standard RNN?
@@ -2362,4 +2662,648 @@ Adam: Combines momentum + RMSProp
 
 **END OF NOTES**
 
-*Notes compiled based solely on provided markdown files (doc1.md, doc2.md, doc3.md, doc4.md)*
+_Notes compiled based solely on provided markdown files (doc1.md, doc2.md, doc3.md, doc4.md)_
+
+# ===
+
+===
+
+## Numericals
+
+Based on your **syllabus + uploaded notes**, I would expect exam numericals from the following topics. I've arranged them unit-wise and marked the probability.
+
+# UNIT I – Digital Image Processing
+
+## 1. Sampling and Quantization ⭐⭐⭐⭐⭐
+
+### Numerical Types
+
+#### Type 1: Number of Gray Levels
+
+Formula:
+
+[
+L = 2^b
+]
+
+Questions:
+
+- Find gray levels for 8-bit image.
+- Find bit depth if image has 1024 gray levels.
+
+Examples:
+
+- b=8 → 256 levels
+- L=4096 → b=12
+
+---
+
+#### Type 2: Image Storage Size
+
+Formula:
+
+[
+Size = \frac{M \times N \times b}{8}
+]
+
+Questions:
+
+- Calculate memory needed for 512×512 image with 8 bits/pixel.
+- Compare storage for 8-bit and 16-bit images.
+
+---
+
+#### Type 3: Resolution Comparison
+
+Questions:
+
+- Compare spatial resolution of 512×512 and 1024×1024 images.
+- Compare intensity resolution of 8-bit and 12-bit images.
+
+---
+
+## 2. Pixel Connectivity ⭐⭐⭐
+
+Questions:
+
+- Find 4-neighbors.
+- Find 8-neighbors.
+- Determine whether two pixels are 4-connected or 8-connected.
+- Find connected components.
+
+Usually diagram-based.
+
+---
+
+## 3. Gray Level Transformations ⭐⭐⭐⭐⭐
+
+### Negative Transformation
+
+[
+s=L-1-r
+]
+
+Example:
+
+Input = 50
+
+[
+s=255-50=205
+]
+
+---
+
+### Log Transformation
+
+[
+s=c\log(1+r)
+]
+
+Numericals:
+
+- Compute transformed value for given c and r.
+
+---
+
+### Gamma Transformation
+
+[
+s=c r^\gamma
+]
+
+Questions:
+
+- Calculate output for given γ.
+
+---
+
+### Thresholding
+
+Given threshold T:
+
+Determine binary output image.
+
+---
+
+# UNIT II – Affine Transformations & Spatial Filtering
+
+## 1. Scaling ⭐⭐⭐⭐⭐
+
+Matrix:
+
+[
+\begin{bmatrix}
+x'\
+y'
+\end{bmatrix}
+=============
+
+\begin{bmatrix}
+s_x&0\
+0&s_y
+\end{bmatrix}
+\begin{bmatrix}
+x\
+y
+\end{bmatrix}
+]
+
+Questions:
+
+- Find new coordinates after scaling.
+
+---
+
+## 2. Rotation ⭐⭐⭐⭐⭐
+
+[
+\begin{bmatrix}
+x'\
+y'
+\end{bmatrix}
+=============
+
+\begin{bmatrix}
+\cos\theta&-\sin\theta\
+\sin\theta&\cos\theta
+\end{bmatrix}
+\begin{bmatrix}
+x\
+y
+\end{bmatrix}
+]
+
+Questions:
+
+- Rotate point by 90°, 180°, 45°.
+
+Very common.
+
+---
+
+## 3. Translation ⭐⭐⭐⭐
+
+[
+x'=x+t_x
+]
+
+[
+y'=y+t_y
+]
+
+Find transformed coordinates.
+
+---
+
+## 4. Shearing ⭐⭐⭐
+
+Find new coordinates after shear.
+
+---
+
+## 5. Convolution / Spatial Filtering ⭐⭐⭐⭐⭐
+
+Most important numerical in Unit II.
+
+### Mean Filter
+
+Example:
+
+3×3 window:
+
+[
+\begin{bmatrix}
+1&2&3\
+4&5&6\
+7&8&9
+\end{bmatrix}
+]
+
+Apply:
+
+[
+\frac1{9}
+\begin{bmatrix}
+1&1&1\
+1&1&1\
+1&1&1
+\end{bmatrix}
+]
+
+Find output pixel.
+
+---
+
+### Weighted Mean Filter
+
+Use weighted mask and calculate.
+
+---
+
+### Median Filter
+
+Sort neighborhood values.
+
+Find median.
+
+---
+
+### Laplacian Filter
+
+Apply kernel:
+
+[
+\begin{bmatrix}
+0&-1&0\
+-1&4&-1\
+0&-1&0
+\end{bmatrix}
+]
+
+Calculate response.
+
+---
+
+### Sobel Filter
+
+Compute:
+
+[
+G_x
+]
+
+and
+
+[
+G_y
+]
+
+Then:
+
+[
+G=\sqrt{G_x^2+G_y^2}
+]
+
+Very common.
+
+---
+
+# UNIT II (Deep Learning Intro)
+
+## Single Neuron Numerical ⭐⭐⭐⭐⭐
+
+Given:
+
+Inputs:
+
+[
+x_1,x_2
+]
+
+Weights:
+
+[
+w_1,w_2
+]
+
+Bias:
+
+[
+b
+]
+
+Compute:
+
+[
+z=\sum x_iw_i+b
+]
+
+Then activation.
+
+---
+
+## Dense Layer Numerical ⭐⭐⭐⭐⭐
+
+Given:
+
+Input vector
+
+Weight matrix
+
+Bias vector
+
+Find output.
+
+---
+
+## Activation Functions
+
+### Sigmoid
+
+[
+\sigma(x)=\frac1{1+e^{-x}}
+]
+
+Questions:
+
+- Calculate sigmoid(1)
+- Calculate sigmoid(2)
+
+---
+
+### ReLU
+
+[
+f(x)=max(0,x)
+]
+
+Easy numerical.
+
+---
+
+### Tanh
+
+Find tanh(x).
+
+---
+
+### Softmax ⭐⭐⭐⭐⭐
+
+Given vector:
+
+[
+[2,1,0.1]
+]
+
+Find probabilities.
+
+Very important.
+
+---
+
+# UNIT III – Loss Functions & Optimizers
+
+## Binary Cross Entropy ⭐⭐⭐⭐⭐
+
+[
+L=-[y\log(\hat y)+(1-y)\log(1-\hat y)]
+]
+
+Example:
+
+[
+y=1,\hat y=0.8
+]
+
+Calculate loss.
+
+---
+
+## Categorical Cross Entropy ⭐⭐⭐⭐⭐
+
+Given:
+
+True:
+
+[
+[1,0,0]
+]
+
+Predicted:
+
+[
+[0.7,0.2,0.1]
+]
+
+Find loss.
+
+Very likely.
+
+---
+
+## Accuracy Calculation ⭐⭐⭐⭐
+
+Given confusion matrix.
+
+Calculate:
+
+[
+Accuracy=\frac{Correct}{Total}
+]
+
+---
+
+## Backpropagation ⭐⭐⭐⭐
+
+Possible questions:
+
+Given:
+
+[
+L=(y-\hat y)^2
+]
+
+Find gradient.
+
+Find updated weight.
+
+---
+
+## SGD Numerical ⭐⭐⭐⭐
+
+[
+W_{new}=W-\eta \frac{\partial L}{\partial W}
+]
+
+Given:
+
+- Learning rate
+- Gradient
+
+Find updated weight.
+
+---
+
+## Momentum Numerical ⭐⭐⭐
+
+[
+v=\gamma v_{prev}+\eta g
+]
+
+Find velocity and update.
+
+---
+
+## Adam Numerical ⭐⭐
+
+Usually theory.
+
+Small chance of full calculation.
+
+---
+
+# UNIT IV – CNN
+
+## Convolution Numerical ⭐⭐⭐⭐⭐
+
+Most important topic.
+
+Given:
+
+Input matrix
+
+Kernel
+
+Compute output feature map.
+
+Expect 3×3 or 4×4 examples.
+
+---
+
+## Output Size Calculation ⭐⭐⭐⭐⭐
+
+Without padding:
+
+[
+O=\frac{N-F}{S}+1
+]
+
+With padding:
+
+[
+O=\frac{N+2P-F}{S}+1
+]
+
+Example:
+
+Input=32
+
+Filter=3
+
+Padding=1
+
+Stride=1
+
+Output=32
+
+Very common.
+
+---
+
+## Parameter Count ⭐⭐⭐⭐⭐
+
+Formula:
+
+[
+(F\times F\times D +1)\times K
+]
+
+Questions:
+
+- Number of parameters in Conv layer.
+- Number of parameters in Dense layer.
+
+---
+
+## Pooling Numerical ⭐⭐⭐⭐⭐
+
+Given feature map.
+
+Apply:
+
+- Max Pooling
+- Average Pooling
+
+Find output.
+
+Very likely.
+
+---
+
+## Receptive Field Numerical ⭐⭐⭐
+
+Find receptive field after multiple layers.
+
+---
+
+# UNIT V – RNN / LSTM / GRU
+
+## RNN Hidden State Numerical ⭐⭐⭐⭐
+
+Given:
+
+[
+h_t=f(Wx_t+Uh_{t-1}+b)
+]
+
+Compute next hidden state.
+
+---
+
+## BPTT Numerical ⭐⭐⭐
+
+Simple gradient propagation.
+
+Usually short calculations.
+
+---
+
+## LSTM Gate Numerical ⭐⭐⭐⭐
+
+Given:
+
+Forget gate output
+
+Input gate output
+
+Previous cell state
+
+Candidate state
+
+Compute:
+
+[
+c_t=f_t c_{t-1}+i_t \tilde c_t
+]
+
+Very common in university exams.
+
+---
+
+## GRU Numerical ⭐⭐⭐
+
+Given:
+
+Update gate
+
+Reset gate
+
+Previous hidden state
+
+Candidate hidden state
+
+Find new hidden state.
+
+---
+
+# Most Important Numericals to Master
+
+If you have limited time, focus on these 15:
+
+1. Gray level calculation (2^b)
+2. Image storage size
+3. Negative transformation
+4. Gamma transformation
+5. Rotation matrix
+6. Mean filter
+7. Median filter
+8. Sobel filter
+9. Single neuron computation
+10. Softmax
+11. Binary Cross Entropy
+12. Categorical Cross Entropy
+13. SGD weight update
+14. CNN convolution
+15. CNN output size + pooling
+
+These 15 alone cover roughly **80–90% of the numericals likely to appear** from this syllabus.
